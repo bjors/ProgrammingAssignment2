@@ -24,8 +24,16 @@ cacheSolve <- function(x, ...) {
         return(inv)
     }
     data <- x$get()
-    inv <- solve(data)
+    inv <- solve(data, ...)
     x$setinv(inv)
     inv
 }
 
+## test code
+A <- matrix( c(5, 1, 0,
+               3,-1, 2,
+               4, 0,-1), nrow=3, byrow=TRUE)
+    
+m <- makeCacheMatrix(A)
+cacheSolve(m)
+cacheSolve(m)
